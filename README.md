@@ -5,7 +5,7 @@ This project is a work in progress!
 
 Currently supported languages are Coffeescript (```:coffee```) and Objective-c (```:objc```).  ParseModelGenerator will generate all languages by default.
 
-usage
+Usage
 =====
 
 ```ruby
