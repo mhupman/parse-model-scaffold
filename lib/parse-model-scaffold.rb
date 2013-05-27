@@ -2,7 +2,7 @@ require 'parse-model-scaffold/parse_api'
 require 'parse-model-scaffold/parse_inspector'
 require 'parse-model-scaffold/parse_class_builder'
 
-class ParseModelGenerator
+class ParseModelScaffold
 
     def initialize(appId, apiKey)
         @api = ParseApi.new appId, apiKey
