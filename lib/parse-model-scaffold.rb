@@ -1,6 +1,6 @@
-require './lib/parse_api'
-require './lib/parse_inspector'
-require './lib/parse_class_builder'
+require 'parse-model-scaffold/parse_api'
+require 'parse-model-scaffold/parse_inspector'
+require 'parse-model-scaffold/parse_class_builder'
 
 class ParseModelGenerator
 
