@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    parse-model-scaffold (0.1.0)
+    parse-model-scaffold (0.1.1)
       httparty
       slop
 
