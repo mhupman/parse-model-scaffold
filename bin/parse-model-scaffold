@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require 'slop'
+
+opts = Slop.parse(autocreate: true, help: true) do
+  # banner 'Usage: foo.rb [options]'
+
+  on :appid=, 'Parse AppID', :required => true
+  on :apikey=, 'Parse API key', :required => true
+  on :classes=, 'A list of Parse classes to generate scaffolding for', as: Array, :required => true
+  on :types=, "A list of types to generate.  E.g., `--types objc,coffee`.  Defaults are Obj-c, Coffeescript."
+end
+
+# require 'parse-model-scaffold'
+require 'parse-model-scaffold'
+
+scaffolder = Parse::Model::Scaffold::PFScaffolder.new opts[:appid], opts[:apikey]
+
+scaffolder.generate opts[:classes], opts[:types]
+
