@@ -8,11 +8,21 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    diff-lcs (1.1.3)
     httparty (0.11.0)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
     multi_json (1.7.3)
     multi_xml (0.5.3)
+    rake (10.0.4)
+    rspec (2.12.0)
+      rspec-core (~> 2.12.0)
+      rspec-expectations (~> 2.12.0)
+      rspec-mocks (~> 2.12.0)
+    rspec-core (2.12.2)
+    rspec-expectations (2.12.1)
+      diff-lcs (~> 1.1.3)
+    rspec-mocks (2.12.1)
     slop (3.4.5)
 
 PLATFORMS
@@ -20,3 +30,5 @@ PLATFORMS
 
 DEPENDENCIES
   parse-model-scaffold!
+  rake
+  rspec

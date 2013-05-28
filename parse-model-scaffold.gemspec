@@ -19,4 +19,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency 'httparty'
   gem.add_runtime_dependency 'slop'
+
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rspec'
 end
