@@ -5,7 +5,7 @@ require 'parse-model-scaffold/parse_class_builder'
 module Parse
     module Model
         module Scaffold
-            class PFScaffold
+            class PFScaffolder
 
                 def initialize(appId, apiKey)
                     @api = ParseApi.new appId, apiKey
