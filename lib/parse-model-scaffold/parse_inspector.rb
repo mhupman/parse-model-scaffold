@@ -4,13 +4,13 @@ module Parse
     module Model
         module Scaffold
             
-            class ParseInspector
+            PROTECTED_FIELDS = ['objectId', 'createdAt', 'updatedAt', 'ACL']
 
-                @@protected_fields = ['objectId', 'createdAt', 'updatedAt', 'ACL']
+            class ParseInspector
 
                 def self.parse(obj)
 
-                    @@protected_fields.each {|x| obj.delete x}
+                    PROTECTED_FIELDS.each {|x| obj.delete x}
 
                     attrs = []
 
@@ -26,13 +26,12 @@ module Parse
                 # Map Parse types to Ruby types if possible, otherwise, leave them as a 
                 def self.determine_type(val)
 
-                    return val.class.to_s.to_sym if [String, Array].include? val.class
-
+                    # Parse represents complex types as a JSON object, so we need to inspect it
                     if val.is_a? Hash
 
                         # If we don't see the Parse '__type' key that they use for encoding
                         # complex types, then this is just a simple object
-                        return Hash if !val.has_key? '__type'
+                        return :Hash if !val.has_key? '__type'
 
                         # Otherwise, this is probably a Parse type (Relation, Pointer, GeoPoint, etc.)
                         return val['__type'].to_sym
@@ -40,7 +39,7 @@ module Parse
 
                     return :Boolean if [TrueClass, FalseClass].include? val.class
 
-                    # Last resort
+                    # Base case
                     val.class.to_s.to_sym
                 end
             end
