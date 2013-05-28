@@ -16,6 +16,7 @@ module Parse
                 def build (types = nil)
 
                     types ||= supported_types
+                    types = [types] unless types.is_a? Array
 
                     types.each do |type|
 
