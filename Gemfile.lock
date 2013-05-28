@@ -1,3 +1,9 @@
+PATH
+  remote: .
+  specs:
+    parse-model-scaffold (0.0.1)
+      httparty
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -11,4 +17,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  httparty
+  parse-model-scaffold!

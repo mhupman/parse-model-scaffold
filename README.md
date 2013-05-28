@@ -3,17 +3,21 @@ parse-model-scaffold
 
 This project is a work in progress!
 
-Currently supported languages are Coffeescript (```:coffee```) and Objective-c (```:objc```).  ParseModelGenerator will generate all languages by default.
+Currently supported languages are Coffeescript (```:coffee```) and Objective-c (```:objc```).  PFScaffolder will generate all languages by default.
 
 Usage
 =====
 
+```bash
+gem install parse-model-scaffold
+```
+
 ```ruby
-require './lib/parse_model_generator'
+require 'parse_model_generator'
 
-generator = ParseModelGenerator.new 'parse_app_id', 'parse_api_key'
+scaffolder = Parse::Model::Scaffold::PFScaffolder.new 'parse_app_id', 'parse_api_key'
 
-generator.generate 'ParseClassName'
-generator.generate ['ParseClassName1', 'ParseClassName2']
-generator.generate ['ParseClassName1', 'ParseClassName2'], [:objc]
+scaffolder.generate 'ParseClassName'
+scaffolder.generate ['ParseClassName1', 'ParseClassName2']
+scaffolder.generate ['ParseClassName1', 'ParseClassName2'], [:objc]
 ```
