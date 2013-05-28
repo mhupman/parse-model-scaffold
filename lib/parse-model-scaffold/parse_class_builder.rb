@@ -37,8 +37,6 @@ module Parse
                             # Remove extenstion, and name propertly
                             tmpl_file.gsub!('template', @class_name).gsub!(File.extname(tmpl_file), '')
 
-
-
                             File.open(tmpl_file, 'w') { |file| file.write(output) }
                         end
                     end
