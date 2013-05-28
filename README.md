@@ -1,12 +1,14 @@
 parse-model-scaffold
 ====================
 
-This project is a work in progress!
+*This project is a work in progress!*
+
+This project aims to provide a simple way to create concrete subclasses of your Parse.com 'classes' in a variety of languages.  This could be used as part of a CI process to keep Parse.com and your codebase in sync or simply as a way to boostrap Parse.com integration in a new environment.  Where possible, the code this project generates will extend the PFObject representation in the Parse.com SDK for the given language.
 
 The following languages are currently supported.  If you don't see your preferred language, pull requests are welcome!  PFScaffolder will generate all languages by default.
 
-* Coffee-script ```:coffee```
-* Objective-C ```:objc```
+* Coffee-script ```:coffee``` - https://parse.com/docs/js/symbols/Parse.Object.html
+* Objective-C ```:objc``` - https://parse.com/docs/ios/api/Classes/PFObject.html
 
 Usage
 =====
