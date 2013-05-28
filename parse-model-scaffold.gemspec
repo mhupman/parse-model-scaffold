@@ -5,7 +5,7 @@ require 'parse-model-scaffold/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "parse-model-scaffold"
-  gem.version       = ParseModelScaffold::VERSION
+  gem.version       = Parse::Model::Scaffold::VERSION
   gem.authors       = ["Matt Hupman"]
   gem.email         = ["mhupman@citrrus.com"]
   gem.description   = %q{Tool to generate concrete subclasses of existing Parse.com model objects in a variety of languages.}
@@ -17,5 +17,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_runtime_dependency "httparty"
+  gem.add_runtime_dependency 'httparty'
 end

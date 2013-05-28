@@ -1,60 +1,71 @@
 require 'erb'
 
-class ParseClassBuilder
+module Parse
+    module Model
+        module Scaffold
 
-    @@supported_types = [:coffee, :objc]
+            class ParseClassBuilder
 
-    def initialize (class_name, attrs)
-        @class_name = class_name
-        @attrs = attrs
-    end
+                @@supported_types = [:coffee, :objc]
 
-    def build (types = nil)
+                def initialize (class_name, attrs)
+                    @class_name = class_name
+                    @attrs = attrs
+                end
 
-        types ||= supported_types
+                def build (types = nil)
 
-        types.each do |type|
+                    types ||= supported_types
 
-            Dir.glob("./lib/templates/#{type}/*.ejs").each do |tmpl_file|
+                    types.each do |type|
 
-                tmpl = File.read tmpl_file
+                        templates = Dir.glob "./lib/parse-model-scaffold/templates/#{type}/*.ejs"
 
-                erbTmpl = ERB.new tmpl
+                        templates.each do |tmpl_file|
 
-                erbTmpl.result binding
+                            tmpl = File.read tmpl_file
 
-                tmpl_file = File.basename tmpl_file
+                            erbTmpl = ERB.new tmpl
 
-                output = erbTmpl.result binding
+                            erbTmpl.result binding
 
-                # Remove extenstion, and name propertly
-                tmpl_file.gsub!('template', @class_name).gsub!(File.extname(tmpl_file), '')
+                            tmpl_file = File.basename tmpl_file
 
-                File.open(tmpl_file, 'w') { |file| file.write(output) }
+                            output = erbTmpl.result binding
+
+                            # Remove extenstion, and name propertly
+                            tmpl_file.gsub!('template', @class_name).gsub!(File.extname(tmpl_file), '')
+
+
+
+                            File.open(tmpl_file, 'w') { |file| file.write(output) }
+                        end
+                    end
+                end
+
+                def objc_attr_type(attr)
+                    case attr.type
+                    when :String, :Array
+                        "NS#{attr.type}*"
+                    when :Boolean
+                        "BOOL"
+                    when :Pointer
+                        "PFObject*"
+                    when :GeoPoint
+                        "PFGeoPoint*"
+                    when :Relation
+                        "PFRelation*"
+                    else
+                        "?#{attr.type}?"
+                    end
+                end
+
+                private
+
+                def supported_types
+                    @@supported_types
+                end
             end
         end
-    end
-
-    def objc_attr_type(attr)
-        case attr.type
-        when :String, :Array
-            "NS#{attr.type}*"
-        when :Boolean
-            "BOOL"
-        when :Pointer
-            "PFObject*"
-        when :GeoPoint
-            "PFGeoPoint*"
-        when :Relation
-            "PFRelation*"
-        else
-            "?#{attr.type}?"
-        end
-    end
-
-    private
-
-    def supported_types
-        @@supported_types
     end
 end
