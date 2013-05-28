@@ -1,14 +1,10 @@
+require 'parse-model-scaffold/types'
+
 module Parse
     module Model
         module Scaffold
             
             class ParseInspector
-
-                Attribute = Struct.new :name, :type do
-                    def to_s
-                        self.name
-                    end
-                end
 
                 @@protected_fields = ['objectId', 'createdAt', 'updatedAt', 'ACL']
 
@@ -20,7 +16,7 @@ module Parse
 
                     obj.each do |k, v|
                         value_type = determine_type(v)
-                        attr = Attribute.new(k, value_type)
+                        attr = ParseAttribute.new(k, value_type)
                         attrs << attr
                     end
 
